@@ -12,6 +12,6 @@ class Text(AbstractText):
     class Meta:
         app_label = 'cms_plugins_text'
 
-#    CHOICES = tuple((w[0], w[0]) for w in settings.CMS_TEXT_WRAPPERS)
-#    wrapper = models.CharField(max_length=50, choices=CHOICES, blank=True,
-#                               verbose_name=_('Wrap into'))
+    CHOICES = tuple((w[0], w[0]) for w in settings.CMS_TEXT_WRAPPERS)
+    wrapper = models.CharField(max_length=50, choices=CHOICES, blank=True,
+                               verbose_name=_('Wrap into'))
