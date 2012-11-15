@@ -37,7 +37,11 @@ add the plugin to ``INSTALLED_APPS``::
 
 and remove 'cms.plugins.text' from ``INSTALLED_APPS`` if configured.
 
-Then run ``migrate`` to update your database tables.
+Then run ``manage.py migrate cmsplugin_text_wrapper`` to update your database
+table ``cmsplugin_text``.
+
+Restart your application. You may use all your text fields as before. They are
+all marked for not using any wrapper.
 
 Usage
 -----
@@ -66,12 +70,13 @@ which is replaced by the editors content.
 If ``render_template`` is missing, the content of this text plugin is rendered
 in the same way, as the default text plugin renders its content.
 
-``extra_context`` is a directory containing any kind of data. The rendering
-context is populated with this extra context.
+``extra_context`` is an optional directory containing any kind of data. The
+context used to render the template is populated with this extra context.
 
 This plugin does not change the admin interface, except for a pull down box on
 top of the text editor. Using the default value is perfectly legal, in this case
-the text wrapper plugin behaves exactly as the default text plugin.
+the text wrapper plugin behaves exactly as the default text plugin as shipped
+with **django-cms**.
 
 
 The 960 pixel grid system 
@@ -80,13 +85,13 @@ The 960 pixel grid system
 One of the most widespread grid system is named http://960.gs . This plugin
 interacts nicely with this grid, but does not depend on it.
 
-The problem with the current text plugin is that the editor can add text, images,
+The problem with the shipped text plugin is that an editor can add text, images,
 etc. to a placeholder, but he gains no control over the layout of the given
 container. Often this is desired behavior but sometimes it is annoying.
 
-This means that if an editor wants to use the 960 Grid System with say 12 columns,
-a template must be created for each possible combinations of rows.
-This can result in templates such as::
+So, if an editor wants to use the 960 Grid System with say 12 columns, a
+template must be created for each possible combinations of rows. This can result
+in templates such as::
 
     <begin container------------12>
       <grid-------------9> <grid-3>
@@ -96,8 +101,8 @@ This can result in templates such as::
 
 It can be hard to maintain all possible combinations of rows and columns.
 
-This plugin gives the editor of a CMS page a flexible and clean way to add
-many different rows, each with a variable amount of columns and widths. 
+This **rendering ** gives an editor of a CMS page a flexible and clean way to
+add many different rows, each with a variable amount of columns and widths.
 
 If this grid system is enforced, the editor gains control over certain parts of
 the layout without having to fiddle with div tags or snippets.
@@ -142,9 +147,8 @@ and add it in different configurations to your ``CMS_TEXT_WRAPPERS`` tuples::
 
 text-plugin-ng
 --------------
-There is another plugin which works similar to this one and is named **text-plugin-ng**.
-This plugin is not intended to replace the default text plugin. Is is intended
-to be an additional alternative plugin.
-
-The plugin **text-plugin-ng** is not compatible with the current text plugin and
-additional tables have to maintained. It thus is not as simple to use as **cmsplugin-text-wrapper**.
+There is another plugin which works similar to this one: https://github.com/KristianOellegaard/cmsplugin-text-ng .
+The **text-plugin-ng** is not intended to replace the default text plugin. Is is
+intended to be an additional plugin to the built-in text plugin. It also is not
+compatible with the current text plugin and additional tables have to
+maintained. It thus is not as simple to use as **cmsplugin-text-wrapper**.
