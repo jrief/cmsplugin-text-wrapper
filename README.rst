@@ -21,8 +21,8 @@ Dependencies
 ------------
 
 * Django >= 1.3
-* django-cms >= 2.2
-* django-south >= South==0.7
+* django-cms >= 2.3
+* South >= 0.7
 
 Installation
 ------------
