@@ -153,8 +153,10 @@ text-plugin-ng
 There is another plugin which works in a similar way to this one. It can be 
 downloaded from https://github.com/KristianOellegaard/cmsplugin-text-ng .
 
-**text-plugin-ng** is not intended to replace the default text plugin. Is is
-an additional plugin to the text plugin as shipped with Django CMS and is
-not compatible with it. Therefore an editor always has to choose between the
-text plugin shipped with Django CMS and **cmsplugin-text-ng**. He additionally
-has to maintain two extra tables.
+**text-plugin-ng** is not intended to replace the default text plugin. It is
+an add on to the text plugin as shipped with Django CMS and is not compatible
+with it. Therefore an editor gets a choice of two text plugin, the one shipped
+with Django CMS and **cmsplugin-text-ng**. For each placeholder he then has to
+choose from one of those two.
+
+Additionally the editor has to maintain two extra tables with named templates.
