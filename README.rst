@@ -1,7 +1,7 @@
 cmsplugin-text-wrapper
 ======================
 
-A Dajngo CMS plugin which extends and replaces the shipped text plugin with
+A Django CMS plugin which extends and replaces the shipped text plugin with
 simple wrapper functionalities.
 
 Description
