@@ -35,13 +35,13 @@ add the plugin to ``INSTALLED_APPS``::
         ...
     )
 
-and remove 'cms.plugins.text' from ``INSTALLED_APPS`` if configured.
+and remove ``'cms.plugins.text'`` from ``INSTALLED_APPS`` if configured.
 
 Then run ``manage.py migrate cmsplugin_text_wrapper`` to update your database
-table ``cmsplugin_text``.
+table ``cmsplugin_text``. This adds a column named ``wrapper``.
 
-Restart your application. You may use all your text fields as before. They are
-all marked for not using any wrapper.
+Restart your application. You may use all your text fields as before. They then
+are marked for not using any wrapper and are rendered as before.
 
 Usage
 -----
@@ -70,7 +70,7 @@ which is replaced by the editors content.
 If ``render_template`` is missing, the content of this text plugin is rendered
 in the same way, as the default text plugin renders its content.
 
-``extra_context`` is an optional directory containing any kind of data. The
+``extra_context`` is an optional dictionary containing any kind of data. The
 context used to render the template is populated with this extra context.
 
 This plugin does not change the admin interface, except for a pull down box on
@@ -89,9 +89,9 @@ The problem with the shipped text plugin is that an editor can add text, images,
 etc. to a placeholder, but he gains no control over the layout of the given
 container. Often this is desired behavior but sometimes it is annoying.
 
-So, if an editor wants to use the 960 Grid System with say 12 columns, a
+So, if an editor wants to use the 960 Grid System with, say 12 columns, a
 template must be created for each possible combinations of rows. This can result
-in templates such as::
+in specialized templates such as::
 
     <begin container------------12>
       <grid-------------9> <grid-3>
@@ -99,16 +99,19 @@ in templates such as::
       <grid--4> <grid--4> <grid--4>
     <end container---------------->
 
-It can be hard to maintain all possible combinations of rows and columns.
+where each grid container gets its own placeholder. If an editor needs many
+similar layouts such as the one shown above, it can be hard to maintain all
+possible combinations of rows and columns.
 
-This **rendering ** gives an editor of a CMS page a flexible and clean way to
-add many different rows, each with a variable amount of columns and widths.
+This **cmsplugin-text-wrapper** gives an editor of a CMS page a flexible and
+clean way to add as many different rows, with as many different columns as he
+wishes. Each of these columns can have their own widths.
 
 If this grid system is enforced, the editor gains control over certain parts of
-the layout without having to fiddle with div tags or snippets.
+the layout without having to fiddle with div tags nor snippets.
 
-Download the files ``960.css`` and ```reset.css`` and add them to your
-stylesheets.
+Download the files ``reset.css``, ``text.css`` and ``960.css`` from http://github.com/nathansmith/960-Grid-System/zipball/master
+and add them to your stylesheets.
 
 In your templates directory, create a template named ``container-12.html``::
 
@@ -147,8 +150,11 @@ and add it in different configurations to your ``CMS_TEXT_WRAPPERS`` tuples::
 
 text-plugin-ng
 --------------
-There is another plugin which works similar to this one: https://github.com/KristianOellegaard/cmsplugin-text-ng .
-The **text-plugin-ng** is not intended to replace the default text plugin. Is is
-intended to be an additional plugin to the built-in text plugin. It also is not
-compatible with the current text plugin and additional tables have to
-maintained. It thus is not as simple to use as **cmsplugin-text-wrapper**.
+There is another plugin which works in a similar way to this one. It can be 
+downloaded from https://github.com/KristianOellegaard/cmsplugin-text-ng .
+
+**text-plugin-ng** is not intended to replace the default text plugin. Is is
+an additional plugin to the text plugin as shipped with Django CMS and is
+not compatible with it. Therefore an editor always has to choose between the
+text plugin shipped with Django CMS and **cmsplugin-text-ng**. He additionally
+has to maintain two extra tables.
