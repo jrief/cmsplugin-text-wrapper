@@ -148,10 +148,11 @@ and add it in different configurations to your ``CMS_TEXT_WRAPPERS`` tuples::
     )
 
 
+There are other plugins which works in a similar way as **cmsplugin-text-wrapper**:
+
 text-plugin-ng
 --------------
-There is another plugin which works in a similar way to this one. It can be 
-downloaded from https://github.com/KristianOellegaard/cmsplugin-text-ng .
+Download from https://github.com/KristianOellegaard/cmsplugin-text-ng .
 
 **text-plugin-ng** is not intended to replace the default text plugin. It is
 an add on to the text plugin as shipped with Django CMS and is not compatible
@@ -160,3 +161,13 @@ with Django CMS and **cmsplugin-text-ng**. For each placeholder he then has to
 choose from one of those two.
 
 Additionally the editor has to maintain two extra tables with named templates.
+
+django-cms-columns
+------------------
+Download from https://github.com/philomat/django-cms-columns
+
+**django-cms-columns** offers support for the grid systems [YAML](http://www.yaml.de/en/documentation/practice/subtemplates.html) 
+and [Blueprint](http://www.blueprintcss.org/) in the form of built in templates.
+
+It does not seem to be supported any more.
+
