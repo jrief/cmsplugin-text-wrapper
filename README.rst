@@ -158,11 +158,6 @@ and add it in different configurations to your ``CMS_TEXT_WRAPPERS`` tuples::
 
 There are other plugins which works in a similar way as **cmsplugin-text-wrapper**:
 
-Migrate from cms.plugins.text
------------------------------
-In case you already use the text plugin ``cms.plugins.text`` shipped with DjangoCMS,
-simple remove it from your INSTALLED_APPS and add 
-
 text-plugin-ng
 --------------
 Download from https://github.com/KristianOellegaard/cmsplugin-text-ng .
