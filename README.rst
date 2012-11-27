@@ -40,6 +40,14 @@ and remove ``'cms.plugins.text'`` from ``INSTALLED_APPS`` if configured.
 Then run ``manage.py migrate cmsplugin_text_wrapper`` to update your database
 table ``cmsplugin_text``. This adds a column named ``wrapper``.
 
+In case you set up a new instance of DjangoCMS, you will get an error during
+the migration, which can be ignored::
+
+    ./manage.py migrate cmsplugin_text_wrapper 
+    Running migrations for cmsplugin_text_wrapper:
+    (...snip...)
+    FATAL ERROR - The following SQL query failed: SELECT COUNT(*) FROM cmsplugin_text
+
 Restart your application. You may use all your text fields as before. They then
 are marked for not using any wrapper and are rendered as before.
 
@@ -149,6 +157,11 @@ and add it in different configurations to your ``CMS_TEXT_WRAPPERS`` tuples::
 
 
 There are other plugins which works in a similar way as **cmsplugin-text-wrapper**:
+
+Migrate from cms.plugins.text
+-----------------------------
+In case you already use the text plugin ``cms.plugins.text`` shipped with DjangoCMS,
+simple remove it from your INSTALLED_APPS and add 
 
 text-plugin-ng
 --------------
