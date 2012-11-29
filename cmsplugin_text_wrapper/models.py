@@ -7,12 +7,12 @@ from django.utils.html import strip_tags
 from django.utils.text import Truncator
 
 
-class Text(AbstractText):
+class TextWrapper(AbstractText):
     """
     Alternative text class with wrapper functionality
     """
     class Meta:
-        app_label = 'cms_plugins_text'
+        db_table = 'cmsplugin_text'
 
     CHOICES = tuple((w[0], w[0]) for w in settings.CMS_TEXT_WRAPPERS)
     wrapper = models.CharField(max_length=50, choices=CHOICES, blank=True,

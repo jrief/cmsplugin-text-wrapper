@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 import sys
+import os
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
@@ -10,19 +11,24 @@ from django.db.utils import DatabaseError
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Text'
+        # Adding model 'TextWrapper'
         try:
+            sys.stderr.flush()
+            remember_stderr = sys.stderr
+            sys.stderr = open(os.devnull, 'w')
             db.execute('SELECT COUNT(*) FROM cmsplugin_text')
         except DatabaseError:
-            print >> sys.stderr, 'No problem if Table \'cmsplugin_text\' does not exists – create it'
             db.create_table('cmsplugin_text', (
                 ('cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
                 ('body', self.gf('django.db.models.fields.TextField')()),
             ))
             db.send_create_signal('cmsplugin_text_wrapper', ['Text'])
+        finally:
+            sys.stderr.close()
+            sys.stderr = remember_stderr
 
     def backwards(self, orm):
-        # Deleting model 'Text'
+        # Deleting model 'TextWrapper'
         db.delete_table('cmsplugin_text')
 
 
@@ -30,7 +36,7 @@ class Migration(SchemaMigration):
         'cms.cmsplugin': {
             'Meta': {'object_name': 'CMSPlugin'},
             'changed_date': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 11, 27, 0, 0)'}),
+            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 11, 29, 0, 0)'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'language': ('django.db.models.fields.CharField', [], {'max_length': '15', 'db_index': 'True'}),
             'level': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
@@ -48,10 +54,10 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'slot': ('django.db.models.fields.CharField', [], {'max_length': '50', 'db_index': 'True'})
         },
-        'cmsplugin_text_wrapper.text': {
-            'Meta': {'object_name': 'Text', 'db_table': "'cmsplugin_text'"},
+        'cmsplugin_text_wrapper.textwrapper': {
+            'Meta': {'object_name': 'TextWrapper', 'db_table': "'cmsplugin_text'"},
             'body': ('django.db.models.fields.TextField', [], {}),
-            'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'})
+            'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
         }
     }
 

@@ -15,20 +15,11 @@ class Migration(SchemaMigration):
     def backwards(self, orm):
         db.delete_column('cmsplugin_text', 'wrapper')
 
-#    models = {
-#        'cmsplugin_text.text': {
-#            'Meta': {'db_table': "'cmsplugin_text'"},
-#            'body': ('models.TextField', [], {}),
-#            'wrapper': ('models.CharField', [], {'max_length': '50', 'blank': True}),
-#            'cmsplugin_ptr': ('models.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'})
-#        },
-#    }
-
     models = {
         'cms.cmsplugin': {
             'Meta': {'object_name': 'CMSPlugin'},
             'changed_date': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 11, 27, 0, 0)'}),
+            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 11, 29, 0, 0)'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'language': ('django.db.models.fields.CharField', [], {'max_length': '15', 'db_index': 'True'}),
             'level': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
@@ -46,10 +37,11 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'slot': ('django.db.models.fields.CharField', [], {'max_length': '50', 'db_index': 'True'})
         },
-        'cmsplugin_text_wrapper.text': {
-            'Meta': {'object_name': 'Text', 'db_table': "'cmsplugin_text'"},
+        'cmsplugin_text_wrapper.textwrapper': {
+            'Meta': {'object_name': 'TextWrapper', 'db_table': "'cmsplugin_text'"},
             'body': ('django.db.models.fields.TextField', [], {}),
-            'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'})
+            'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
+            'wrapper': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'})
         }
     }
 

@@ -1,3 +1,10 @@
+Version 0.4
+=============
+* Fixed problem on
+  manage.py dumpdata cmsplugin_text_wrapper
+  which did not export any table content.
+* Suppress nasty error messages, when table is created rather than migrated.
+
 Version 0.3
 =============
 * Fixed the problem during migration, when table cmsplugin_text did not yet exists.
