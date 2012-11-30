@@ -5,7 +5,7 @@ from cms.plugin_pool import plugin_pool
 from cms.plugins import text
 from cms.plugins.text.utils import plugin_tags_to_user_html
 from cms.plugins.text.cms_plugins import TextPlugin as TextPluginBase
-from cmsplugin_text_wrapper.models import Text
+from cmsplugin_text_wrapper.models import TextWrapper
 from cmsplugin_text_wrapper.forms import TextForm
 
 
@@ -14,7 +14,7 @@ setattr(settings, 'TEMPLATE_DIRS', TEMPLATE_DIRS)
 
 
 class TextPlugin(TextPluginBase):
-    model = Text
+    model = TextWrapper
     form = TextForm
 
     def render(self, context, instance, placeholder):
