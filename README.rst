@@ -92,19 +92,21 @@ interacts nicely with this grid, but does not depend on it.
 
 The problem with the shipped text plugin is that an editor can add text, images,
 etc. to a placeholder, but he gains no control over the layout of the given
-container. Often this is desired behavior but sometimes it is annoying.
+container. Often this is desired behavior to enforce a consistent layout, but
+sometimes it is annoying, since too many specialized templates have to be
+created.
 
-So, if an editor wants to use the 960 Grid System with, say 12 columns, a
-template must be created for each possible combinations of rows. This can result
-in specialized templates such as::
+Say, an editor wants to use the 960 Grid System with 12 columns. Now for for each
+possible combinations of rows and colums, a special template must be created. This
+can result in a template such as::
 
-    <begin container------------12>
-      <grid-------------9> <grid-3>
-      <grid-------6> <grid-------6>
-      <grid--4> <grid--4> <grid--4>
-    <end container---------------->
+    <div class="container_12">
+        <div class="grid_9">{% placeholder "g1" %}</div><div class="grid_3">{% placeholder "g2" %}</div>
+        <div class="grid_6">{% placeholder "g3" %}</div><div class="grid_6">{% placeholder "g4" %}</div>
+        <div class="grid_4">{% placeholder "g5" %}</div><div class="grid_4">{% placeholder "g6" %}</div><div class="grid_4">{% placeholder "g7" %}</div>
+    </div>
 
-where each grid container gets its own placeholder. If an editor needs many
+Here each grid-div gets its own placeholder. If an editor needs many
 similar layouts such as the one shown above, it can be hard to maintain all
 possible combinations of rows and columns.
 
@@ -130,7 +132,7 @@ and add it to your CMS_TEMPLATES tuple.
 
 In your templates directory, create another template named ``grid.html``::
 
-    <div class="{{grid_class}}">
+    <div class="{{ grid_class }}">
         {{ body|safe }}
     </div>
 
