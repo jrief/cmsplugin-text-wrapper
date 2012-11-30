@@ -38,18 +38,15 @@ add the plugin to ``INSTALLED_APPS``::
 and remove ``'cms.plugins.text'`` from ``INSTALLED_APPS`` if configured.
 
 Then run ``manage.py migrate cmsplugin_text_wrapper`` to update your database
-table ``cmsplugin_text``. This adds a column named ``wrapper``.
+table ``cmsplugin_text``. This adds a column named ``wrapper`` and keeps
+everything caompatible.
 
-In case you set up a new instance of DjangoCMS, you will get an error during
-the migration, which can be ignored::
+In case you set up a new instance of DjangoCMS, the migration scripts will
+look for a table named ``cmsplugin_text`` and if it does not exists, create
+it.
 
-    ./manage.py migrate cmsplugin_text_wrapper 
-    Running migrations for cmsplugin_text_wrapper:
-    (...snip...)
-    FATAL ERROR - The following SQL query failed: SELECT COUNT(*) FROM cmsplugin_text
-
-Restart your application. You may use all your text fields as before. They then
-are marked for not using any wrapper and are rendered as before.
+Restart your application. You may use all your text fields in exactly as before.
+They then are marked for not using any wrapper and are rendered as before.
 
 Usage
 -----
