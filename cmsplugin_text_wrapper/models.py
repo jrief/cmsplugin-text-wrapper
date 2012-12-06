@@ -13,6 +13,7 @@ class TextWrapper(AbstractText):
     """
     class Meta:
         db_table = 'cmsplugin_text'
+        app_label = 'cmsplugin_text_wrapper'
 
     CHOICES = tuple((w[0], w[0]) for w in settings.CMS_TEXT_WRAPPERS)
     wrapper = models.CharField(max_length=50, choices=CHOICES, blank=True,
