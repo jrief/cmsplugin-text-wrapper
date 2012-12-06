@@ -1,3 +1,8 @@
+Version 0.5
+=============
+* During tests with Postgres, migration scripts failed. Fixed with a much cleaner
+  way to check if table 'cmsplugin_text' exists.
+
 Version 0.4
 =============
 * Fixed problem on
