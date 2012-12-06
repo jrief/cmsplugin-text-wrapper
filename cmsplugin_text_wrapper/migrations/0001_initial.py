@@ -1,31 +1,19 @@
 # -*- coding: utf-8 -*-
-import datetime
-import sys
-import os
 from south.db import db
 from south.v2 import SchemaMigration
-from django.db import models
-from django.db.utils import DatabaseError
+from django.db import connection
 
 
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'TextWrapper'
-        try:
-            sys.stderr.flush()
-            remember_stderr = sys.stderr
-            sys.stderr = open(os.devnull, 'w')
-            db.execute('SELECT COUNT(*) FROM cmsplugin_text')
-        except DatabaseError:
+        if 'cmsplugin_text' not in connection.introspection.table_names():
             db.create_table('cmsplugin_text', (
                 ('cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
                 ('body', self.gf('django.db.models.fields.TextField')()),
             ))
             db.send_create_signal('cmsplugin_text_wrapper', ['Text'])
-        finally:
-            sys.stderr.close()
-            sys.stderr = remember_stderr
 
     def backwards(self, orm):
         # Deleting model 'TextWrapper'
