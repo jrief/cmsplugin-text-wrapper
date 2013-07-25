@@ -9,5 +9,5 @@ class TextForm(ModelForm):
 
     class Meta:
         model = TextWrapper
-        fields = ('wrapper', 'body')
+        fields = ('wrapper', 'classes', 'body')
         exclude = ('page', 'position', 'placeholder', 'language', 'plugin_type')

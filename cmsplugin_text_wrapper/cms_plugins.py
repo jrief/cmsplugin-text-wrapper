@@ -18,15 +18,21 @@ class TextPlugin(TextPluginBase):
     form = TextForm
 
     def render(self, context, instance, placeholder):
-        if instance.wrapper:
-            wrappers = filter(lambda w: w[0] == instance.wrapper, settings.CMS_TEXT_WRAPPERS)
-            if wrappers:
-                instance.render_template = wrappers[0][1].get('render_template')
-                context.update(wrappers[0][1].get('extra_context', {}))
+        wrappers = [w[1] for w in settings.CMS_TEXT_WRAPPERS if w[0] == instance.wrapper]
+        if wrappers:
+            instance.render_template = wrappers[0].get('render_template')
+            context.update(wrappers[0].get('extra_context', {}))
+        extra_classes = []
+        for csscls in instance.classes:
+            try:
+                extra_classes.append(dict(instance.CLASSES)[int(csscls)])
+            except (ValueError, IndexError):
+                pass
+        context['extra_classes'] = ' '.join(extra_classes)
         context.update({
             'body': plugin_tags_to_user_html(instance.body, context, placeholder),
             'placeholder': placeholder,
-            'object': instance
+            'object': instance,
         })
         return context
 
