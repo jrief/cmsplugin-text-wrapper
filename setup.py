@@ -6,7 +6,7 @@ def read(fname):
 
 setup(
     name = "cmsplugin-text-wrapper",
-    version = "0.5",
+    version = "0.6",
     url = 'https://github.com/jrief/cmsplugin-text-wrapper',
     license = 'BSD',
     description = "A django-cms plugin which extends and replaces the shipped text plugin with simple wrapper functionalities.",

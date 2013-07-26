@@ -86,19 +86,19 @@ with **django-cms**.
 
 The 960 pixel grid system 
 -------------------------
+One of the most widespread grid system is named http://960.gs/
+This plugin interacts nicely with this grid system, but does not depend on it. This documentation
+shows how to integrate this plugin with the 960.gs, but it might also work perfectly well with
+Twitter Bootstrap.
 
-One of the most widespread grid system is named http://960.gs . This plugin
-interacts nicely with this grid, but does not depend on it.
+The problem with the shipped text plugin is that an editor can add text, images, etc. to a
+placeholder, but he gains no control over the layout of the given container. Often this is desired
+behavior to enforce a consistent layout, but sometimes it is annoying, since too many specialized
+templates have to be created.
 
-The problem with the shipped text plugin is that an editor can add text, images,
-etc. to a placeholder, but he gains no control over the layout of the given
-container. Often this is desired behavior to enforce a consistent layout, but
-sometimes it is annoying, since too many specialized templates have to be
-created.
-
-Say, an editor wants to use the 960 Grid System with 12 columns. Now for for each
-possible combinations of rows and colums, a special template must be created. This
-can result in a template such as::
+Say, an editor wants to use the 960 Grid System with 12 columns. Now for for each possible
+combinations of rows and colums, a special template must be created. This can result in a template
+such as::
 
     <div class="container_12">
         <div class="grid_9">{% placeholder "g1" %}</div><div class="grid_3">{% placeholder "g2" %}</div>
@@ -106,16 +106,15 @@ can result in a template such as::
         <div class="grid_4">{% placeholder "g5" %}</div><div class="grid_4">{% placeholder "g6" %}</div><div class="grid_4">{% placeholder "g7" %}</div>
     </div>
 
-Here each grid-div gets its own placeholder. If an editor needs many
-similar layouts such as the one shown above, it can be hard to maintain all
-possible combinations of rows and columns.
+Here each grid-div gets its own placeholder. If an editor needs many similar layouts such as the one
+shown above, it can be hard to maintain all possible combinations of rows and columns.
 
-This **cmsplugin-text-wrapper** gives an editor of a CMS page a flexible and
-clean way to add as many different rows, with as many different columns as he
-wishes. Each of these columns can have their own widths.
+This **cmsplugin-text-wrapper** gives an editor of a CMS page a flexible and clean way to add as
+many different rows, with as many different columns as he wishes. Each of these columns can have
+their own widths.
 
-If this grid system is enforced, the editor gains control over certain parts of
-the layout without having to fiddle with div tags nor snippets.
+If this grid system is enforced, the editor gains control over certain parts of the layout without
+having to fiddle with div tags nor snippets.
 
 Download the files ``reset.css``, ``text.css`` and ``960.css`` from http://github.com/nathansmith/960-Grid-System/zipball/master
 and add them to your stylesheets.
@@ -132,7 +131,7 @@ and add it to your CMS_TEMPLATES tuple.
 
 In your templates directory, create another template named ``grid.html``::
 
-    <div class="{{ grid_class }}">
+    <div class="{{ grid_class }} {{extra_classes}}">
         {{ body|safe }}
     </div>
 
@@ -153,9 +152,22 @@ and add it in different configurations to your ``CMS_TEXT_WRAPPERS`` tuples::
         }),
         ... and more ...
     )
+    CMS_TEXT_WRAPPER_CLASSES = ('alpha', 'omega',)
+
+Now, after choosing a plugin of type **Text** in the CMS admin backend, two additionals fields are
+added. The first is a select box labeled **Wrap into** where the editor can choose one of the
+grids. The second is a list of checkboxes, one for each wrapper classes.
 
 
-There are other plugins which works in a similar way as **cmsplugin-text-wrapper**:
+Version history
+---------------
+* 0.5: final release which could replace **cmsplugin-text** seamlessly.
+* 0.6: added a MultipleSelectField to add extra classes to the wrapper.
+
+
+Related plugins which works in a similar way as **cmsplugin-text-wrapper**:
+...........................................................................
+
 
 text-plugin-ng
 --------------
