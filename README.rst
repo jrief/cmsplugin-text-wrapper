@@ -4,9 +4,14 @@ cmsplugin-text-wrapper
 A Django CMS plugin which extends and replaces the shipped text plugin with
 simple wrapper functionalities.
 
+DjangoCMS >=3.0 users
+---------------------
+In DjangoCMS >= 3.0 this plugin is deprecated. Instead please use
+https://github.com/jrief/djangocms-bootstrap, which is more flexible
+and offers many more features.
+
 Description
 -----------
-
 This plugin adds a simple wrapping functionality to the text plugin shipped with
 django-cms. By adding this plugin, an editor may optionally choose a predefined
 wrapper, which is rendered as template around the current content. This is
@@ -19,14 +24,12 @@ TinyMCE editor.
 
 Dependencies
 ------------
-
 * Django >= 1.3
 * django-cms >= 2.3
 * South >= 0.7
 
 Installation
 ------------
-
 add the plugin to ``INSTALLED_APPS``::
 
     INSTALLED_APPS = (
